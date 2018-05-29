@@ -1,0 +1,7 @@
+## IP
+    - Pegando IP via Request Headers
+    - A API estava buscando apenas o IP do servidor
+
+## Cotação
+    - Utiliza a seguinte API para cotação do Dolar Turismo: 
+    URL: https://github.com/raniellyferreira/economy-api

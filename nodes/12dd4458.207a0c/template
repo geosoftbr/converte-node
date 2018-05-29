@@ -1,0 +1,285 @@
+<!DOCTYPE HTML>
+<html>
+    
+<title>Calculadora de Muamba</title>
+<head>
+  <meta charset="utf-8" />
+  <meta HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE" />
+  <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1, user-scalable=0" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <title>Calculo de Compras nos EUA</title>
+  <link rel="stylesheet" href="//code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script src="//code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highcharts/4.0.3/highcharts.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/vanilla-masker@1.1.1/build/vanilla-masker.min.js"></script>
+  <link href="//afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+<style>
+* {
+    box-sizing: border-box;
+}
+h4{
+	font-size: 11px;
+	font-style:oblique;
+	font-weight: bold;
+	text-align-last: left;
+}
+h5{
+	font-size: 10px;
+	font-style:oblique;
+	font-weight:lighter;
+	text-align-last: center;
+}	
+
+body{
+  font-size: 12px;
+  font-family: sans-serif;
+
+}
+
+input[type=text], select, textarea{
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    resize: vertical;
+}
+
+label {
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+}
+
+
+input[type=button] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: left;
+    font-size:12px;
+    font-family: sans-serif;
+}
+input[type=reset] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: left;
+    font-size:12px;
+    font-family: sans-serif;
+}
+
+input[type=button]:hover {
+    background-color: #45a049;
+}
+input[type=reset]:hover {
+    background-color: #45a049;
+}
+input[type=text], input[type=password], input[type=email] {
+    font-size: 20px;
+    box-sizing: border-box;
+}
+.container {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+}
+
+.col-25 {
+    float: left;
+    width: 25%;
+    margin-top: 6px;
+}
+
+.col-75 {
+    float: left;
+    width: 75%;
+    margin-top: 6px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+.disabledInput {
+    color: red;
+}	
+
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+
+  @media only screen and (min-width: 521px){
+    #header1 {width: 475px !important;  margin:auto auto !important; position: relative !important; border:1px solid #cccccc;}
+    #c1 {width: 475px !important; min-height:500px !important; margin:auto auto !important; position: relative !important; border:1px solid #cccccc;}
+  }
+  .alert {font-weight: bold; color: #FF6C01;}
+  .smallin .ui-input-text {width: 200px !important; color:red;}
+  legend.h1lb {padding:10px 0 5px 0;}
+  .statusView {width: 100% !important;  margin:0px; position: relative !important; height:28px; padding:10px 0 0 0; background-color:#E9E9E9; font-weight:bold; -webkit-border-radius: 0.7em !important; border-radius: 0.7em; display:none; text-align:center; }
+  .statusViewAlert {width: 100% !important;  margin:0px; position: relative !important; height:28px; padding:10px 0 0 0; background-color:#F8B584 !important; font-weight:bold; -webkit-border-radius: 0.7em !important; border-radius: 0.7em; display:none; text-align:center; }
+  .ui-flipswitch {"border-radius: 2em !important; -webkit-border-radius: 2em !important; -moz-border-radius: 2em !important;}
+  /* Active button */
+  .ui-page-theme-a .ui-btn.ui-btn-active,html .ui-bar-a .ui-btn.ui-btn-active,html .ui-body-a .ui-btn.ui-btn-active,html body .ui-group-theme-a .ui-btn.ui-btn-active,html head + body .ui-btn.ui-btn-a.ui-btn-active,
+  /* Active checkbox icon */
+  .ui-page-theme-a .ui-checkbox-on:after,html .ui-bar-a .ui-checkbox-on:after,html .ui-body-a .ui-checkbox-on:after,html body .ui-group-theme-a .ui-checkbox-on:after,.ui-btn.ui-checkbox-on.ui-btn-a:after,
+  /* Active flipswitch background */.ui-page-theme-a .ui-flipswitch-active,html .ui-bar-a .ui-flipswitch-active,html .ui-body-a .ui-flipswitch-active,html body .ui-group-theme-a .ui-flipswitch-active,
+  html body .ui-flipswitch.ui-bar-a.ui-flipswitch-active,
+  /* Active slider track */
+  .ui-page-theme-a .ui-slider-track .ui-btn-active,html .ui-bar-a .ui-slider-track .ui-btn-active,html .ui-body-a .ui-slider-track .ui-btn-active,html body .ui-group-theme-a .ui-slider-track .ui-btn-active,html body div.ui-slider-track.ui-body-a .ui-btn-active {
+    background-color: 		#FF6C01 !important;
+    border-color:	 		#FF6C01 !important;
+    color: 					#fff /*{a-active-color}*/;
+    text-shadow: 0 /*{a-active-shadow-x}*/ 1px /*{a-active-shadow-y}*/ 0 /*{a-active-shadow-radius}*/ #005599 /*{a-active-shadow-color}*/;
+  }
+  .col-25, .col-75, input[type=button] {
+      width: 100%;
+      margin-top: 0;
+  }
+  .col-25, .col-75, input[type=reset] {
+      width: 100%;
+      margin-top: 0;
+  }
+
+input[type=text], input[type=password], input[type=email] {
+    font-size:18px;
+	margin-left: 0px;
+    margin-right: 0px;
+    width: 100%;
+}
+fieldset {
+    padding: 10px;
+}
+</style>
+<script>
+window.onload = function() 
+{  
+   //Pegando os valores na carga do app
+	var iof = 0.0638;
+	var impostoBR = 0.6;
+	var txDolar = {{{global.dTurismo}}}; //vai mudar para busca dinamica --- dolar turismo
+	document.getElementById("impostoIOF").value = ((iof*100).toLocaleString('pt-BR'))+"%";
+	//document.getElementById("dolar").innerHTML = "Dolar Turismo: R$ " +txDolar.toLocaleString('pt-BR');
+	document.getElementById("dolarturismo").value = "R$ " +txDolar.toLocaleString('pt-BR');
+	document.getElementById("impostoRFB").value = ((impostoBR*100).toLocaleString('pt-BR'))+"%";
+
+// Fixa o campo de entrada de valor, aceitando apenas valores em DOLAR
+    VMasker(document.getElementById("vl1")).maskMoney({separator: ','});
+    VMasker(document.getElementById("vl1")).maskMoney({delimiter: '.'});
+}
+</script>
+<script type="text/javascript">
+function calcular() {
+	//essa função tem q sair daqui e ir para outro local (sem acesso) aqui só deve aparecer o resultado
+   
+   	var iof = 0.0638;
+	var impostoBR = 0.6;
+	var txDolar = {{{global.dTurismo}}};
+
+//remove virgula e ponto
+   var preval1 = (document.frm01.vlrDolar.value).replace(".","");
+   var preval = (preval1).replace(",",".");
+   console.log("Valor de Entrada: "+preval);
+
+   var valor1 = preval;
+   console.log("VALOR DOLAR: "+valor1);
+
+   var vlrIOF = valor1 * iof;
+   console.log("VALOR IOF: "+vlrIOF);
+
+   var vlrIOF_Real = vlrIOF * txDolar;
+   console.log("VALOR IOF EM REAL: "+vlrIOF_Real);
+
+   var resAVISTA = valor1 * txDolar;
+   console.log("RESULTADO AVISTA EM REAL: "+resAVISTA);
+
+   var resCOMPRA_US = resAVISTA + vlrIOF_Real;
+   console.log("RESULTADO COMPRAS US CARTAO: "+resCOMPRA_US);
+
+   var txRFB = resAVISTA * impostoBR;
+   console.log("TAXA 60%: "+txRFB);
+
+   var resRFB = resCOMPRA_US + txRFB;
+   console.log("RESULTADO RFB: "+resRFB);
+
+ 	valorAvista = parseFloat(Math.round(resAVISTA * 100) / 100).toFixed(2);
+	valorCartao = parseFloat(Math.round(resCOMPRA_US * 100) / 100).toFixed(2);
+	valorEntrega = parseFloat(Math.round(resRFB * 100) / 100).toFixed(2);
+	
+   document.frm01.showBR.value = "R$ " +(valorAvista.replace("." , ","));
+   document.frm01.showUS.value = "R$ " +(valorCartao.replace("." , ","));
+   document.frm01.showRFB.value = "R$ " +(valorEntrega.replace("." , ","));
+
+}
+</script>
+</head>
+<body>
+<div data-role="page" class="jqm-demos ui-responsive-panel" id="panel-responsive-page1" data-title="Cálculo de Compras em Dolar">
+  <div id="header1" data-role="header">
+      <h1 style="color:green;font-size: 14px;">Cálculo de Compras</h1>
+	<a href="#" title="Refazer" onclick="location.reload()" class="ui-btn ui-shadow ui-corner-all ui-icon-refresh ui-btn-icon-notext ui-btn-inline" id="b1">Reiniciar</a>
+	<a href="#add-form" data-icon="gear" data-iconpos="notext">Configuração</a>
+</div>
+	<div id="c1" class="ui-content">
+		<form action="calc.html" name="frm01" method="GET">
+			<div class="ui-field-contain">
+				<label for="vl1" style="margin:-3px 2% 0px 0px"><strong>Valor em (USD) 🇺🇸</strong></label>
+				<input id="vl1" type="text" name="vlrDolar" value="0,00">
+			</div>
+			<div class="ui-field-contain">
+				<input type="button" value="Converter para Real e Calcular" class="botao" onClick="calcular()"/>
+			</div>
+			<div class="ui-field-contain">
+				<label for="vl2" ><strong>À Vista 💵</strong></label>
+				<input class="disabledInput" id= "vl2" type="text" name="showBR" id="showBR" disabled="true"/>
+			</div>
+			<div class="ui-field-contain">
+				<label for="vl3" style="margin:-3px 2% 0px 0px"><strong>Cartão de Crédito 💳</strong></label>
+				<input id="vl3" type="text" name="showUS" id="showUS"  disabled="true"/>
+			</div>
+			<div class="ui-field-contain">
+				<label for="vl4" style="margin:-3px 2% 0px 0px"><strong>Entrega 🇧🇷</strong></label>
+				<input id="vl4" type="text" name="showRFB" id="showRFB"  disabled="true"/>
+			</div>
+
+		</form>
+
+	</div>
+			<!-- /panel -->
+
+	<div data-role="panel" data-position="right" data-display="overlay" data-theme="b" id="add-form">
+
+        <form class="userform">
+
+        	<h2>Configurações</h2>
+		
+			<h3>Cotações consideradas</h3>
+            <label for="dolarturismo">Dolar Turismo</label>
+            <input type="text" name="dolarT" id="dolarturismo" value="" disabled="true">
+
+            <label for="impostoIOF">IOF</label>
+            <input type="text" name="impostoIOF" id="impostoIOF" value="" disabled="true">
+			<label for="impostoRFB">Imposto RFB</label>
+            <input type="text" name="impostoRFB" id="impostoRFB" value="" disabled="true">
+			
+			<h3>Criado por: <br><label id="created" style="font-size:11px; padding:2px">&#9400; <a href="http://www.computercorp.com.br" target="_blank">ComputerCorp</a>
+		    <br>&#9400;<a href="http://www.georgearaujo.com.br/" target="_blank"> georgearaujo</b></a></label></h3>
+            
+            <h4>Atenção</h4>
+			<h4 style="color:grey;">Os valores acima não devem ser considerados &nbsp;como valores finais dos produtos, existirão diferenças de tarifas cambiais, e o cálculo da RFB pode variar de acordo com o bem que está sendo adquirido.</h4>
+			<h4><label id="ip" style="font-size:11px; padding:2px">Seu IP: {{global.meuIP}} </label></h4>
+			
+        </form>
+
+	</div><!-- /panel -->
+	</div>
+
+</body>
+</html>
