@@ -6,9 +6,6 @@ Criado a partir da necessidade de fazer cotações rápidas, eu utilizava uma pl
 <img src="img/app.png">
 
 ## Funções
-### IP (Deprecated)
-  - Pegando IP via Request Headers
-  - A API estava buscando apenas o IP do servidor
 ### Lê DB
   - Lê o Banco de dados e retorna o gráfico de dois dias da cotação do dólar
   - Lê o Banco de dados e retorna o gráfico histórico da cotação do dólar
@@ -19,9 +16,9 @@ Criado a partir da necessidade de fazer cotações rápidas, eu utilizava uma pl
 <img src="img/funcoes.png">
 
 ## Registro de Informações
-### Pegar IP (Deprecated)
+### Pega IP (Deprecated)
   - Lê o cabeçalho da requisição HTTP e pega o endereço IP
-### Grava DB
+### GravaCotacaoDB
   - Gravação periódica das cotações para geração de gráfico histórico
 
 <img src="img/logging.png">
