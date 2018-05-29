@@ -1,4 +1,0 @@
-msg.topic="GetIp";
-global.set("myIP",msg.payload.ip);
-msg.IP = msg.payload.ip;
-return msg;

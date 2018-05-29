@@ -1,6 +1,0 @@
-msg.topic="Cambio";
-valor = msg.payload.ask;
-data = msg.payload.create_date;
-msg.payload.valor = valor
-msg.payload.data = data
-return msg;

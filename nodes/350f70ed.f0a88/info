@@ -1,6 +1,0 @@
-## Registro das Atividades
-
-### Pegar IP
-    Lê o cabeçalho da requisição HTTP e pega o endereço IP
-### Grava DB
-    Gravação periódica das cotações para geração de gráfico histórico

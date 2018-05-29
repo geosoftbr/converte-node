@@ -1,4 +1,0 @@
-msg.topic="cambio";
-global.set("dTurismo",msg.payload[0].ask);
-global.set("timeTurismo",msg.payload[0].create_date);
-global.set("varBid",msg.payload[0].varBid);
