@@ -1,0 +1,6 @@
+msg.topic="cotacao";
+msg.valor=msg.payload.valor;
+msg.data = msg.payload.data;
+msg.payload.valor = msg.valor;
+msg.payload.data = msg.data;
+return msg;

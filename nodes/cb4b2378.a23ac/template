@@ -1,0 +1,125 @@
+<!DOCTYPE HTML>
+<html>
+
+<title>Evolução da Cotação do Dolar</title>
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-114873381-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'UA-114873381-1');
+    </script>
+    
+    <meta HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE" />
+    <link rel="shortcut icon" href="www.techcetera.com.br/favcalc.ico">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src='https://www.google.com/jsapi'></script>
+    <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+</head>
+<body style="background-color:#212121;">
+    <div id="chart_div" style="width: 100%; min-height:500px;"></div>
+<script>
+var text = "";
+var result = [];
+var data = [];
+var nresult=[];
+var ndata=[];
+var linha=[];
+var cotacao = "{{{payload.valor}}}";
+var data2 = "{{{payload.dia}}}";
+result = cotacao.split(",");
+data = data2.split(",");
+
+//tamanho total dos vetores
+var i = data.length-1;
+var lf = 18;
+var k =0;
+
+//quanto eu desejo mostrar? na verdade 9... mas aqui... 2... 
+//o tamanho da amostra é sempre fixo... o q varia é o tamanho total do vetor
+//entao... i = length e lf = 2 lá no oficial é 9... vamos testar.
+for (j=0; j < lf; j++){
+    nresult[j] = Number(result[i-j])
+    ndata[j] = data[i-j]
+  //linha[j] = '"'+data[i-j]+'"'+ Number(result[i-j])
+  }
+
+//Invertendo os Resultados  
+nresult.reverse();
+ndata.reverse();
+//
+
+google.charts.load('current', {packages: ['corechart', 'line']});
+google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+      // Define the chart to be drawn.
+      var data = new google.visualization.DataTable();
+      
+      
+        data.addColumn('string', 'DIAS');
+        data.addColumn('number', 'Variação do USD em Real');
+        for (k=0; k < lf; k++){
+       	 data.addRows([
+          //tem q pegar o vetor de data e colocar item a item como está abaixo...
+           [ndata[k], nresult[k]]
+       	 ]);  
+	    }
+
+      var options = {
+       //curveType: 'function',
+       legend: { 
+       	   position: 'top',
+           textStyle: {
+           color: '#fff',
+        },          
+       },
+       pointsVisible: true,
+        hAxis: {
+          title: '2 DIAS',
+           textStyle: {
+              color: '#fff',
+        		},
+					 titleTextStyle: {
+            color: 'white',
+            //bold: true
+         	 }
+          },
+        vAxis: {
+          title: 'VALOR',
+          format: 'currency',
+          textStyle: {
+              color: '#fff',
+        		},
+          titleTextStyle: {
+            color: 'white',
+            bold: true
+          }
+
+        },
+        chartArea:{
+            backgroundColor:'#444444',
+        },
+        
+		backgroundColor: {
+          fill: '212121',
+        },
+       colors: ['red']
+      };
+
+      var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+
+      chart.draw(data, options);
+    }//EOF drawChart
+ //configure resposnive
+ $(window).resize(function(){
+  drawChart();
+ });
+
+</script>
+
+</body>
+</html>

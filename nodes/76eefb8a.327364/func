@@ -1,0 +1,4 @@
+msg.topic="REQ";
+msg.acesso=msg.payload.ip;
+msg.data = msg.payload.date;
+return msg;

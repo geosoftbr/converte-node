@@ -1,0 +1,11 @@
+var max = msg.payload.total_rows;
+var i;
+var valores =[];
+var dia=[];
+for (i=0; i < max; i++){
+    valores[i] = msg.payload.rows[i].value;
+    dia[i] = msg.payload.rows[i].key;
+}
+msg.payload.valor = valores;
+msg.payload.dia = dia;
+return msg;

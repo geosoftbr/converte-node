@@ -511,25 +511,6 @@
     }
    }
   },
-  "node-red-node-openwhisk": {
-   "name": "node-red-node-openwhisk",
-   "version": "0.3.4",
-   "local": true,
-   "nodes": {
-    "openwhisk": {
-     "name": "openwhisk",
-     "types": [
-      "openwhisk-service",
-      "openwhisk-trigger",
-      "openwhisk-action"
-     ],
-     "enabled": true,
-     "local": true,
-     "module": "node-red-node-openwhisk",
-     "file": "/data/node_modules/node-red-node-openwhisk/openwhisk/openwhisk.js"
-    }
-   }
-  },
   "node-red-node-smooth": {
    "name": "node-red-node-smooth",
    "version": "0.1.0",

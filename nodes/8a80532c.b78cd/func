@@ -1,0 +1,10 @@
+address = msg.req.headers["x-client-ip"];
+timestamp = msg.req.headers["x-request-start"];
+date = new Date();
+//timestamp*1000
+d = date.toLocaleDateString();
+//global.set("meuIP",address);
+msg.topic="GravaAcesso";
+msg.payload.ip = address.toString();
+msg.payload.date = d.toString();
+return msg;
