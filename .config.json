@@ -511,23 +511,6 @@
     }
    }
   },
-  "node-red-node-smooth": {
-   "name": "node-red-node-smooth",
-   "version": "0.1.0",
-   "local": false,
-   "nodes": {
-    "smooth": {
-     "name": "smooth",
-     "types": [
-      "smooth"
-     ],
-     "enabled": true,
-     "local": false,
-     "module": "node-red-node-smooth",
-     "file": "/usr/src/node-red/node_modules/node-red-node-smooth/17-smooth.js"
-    }
-   }
-  },
   "node-red-contrib-git-nodes": {
    "name": "node-red-contrib-git-nodes",
    "version": "0.2.2",
