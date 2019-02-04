@@ -539,18 +539,31 @@
    }
   }
  },
- "_credentialSecret": "730e878850f24026f0e86264681d2059d66f2a6c566b42a18c589f3ce258c6c2",
+ "_credentialSecret": "5e88d8b1df838e4eb4a4ea29a86141de9e052fa0ee22e73338d045c9d324fde2",
  "users": {
   "_": {
+   "editor": {
+    "view": {
+     "view-grid-size": 20,
+     "view-node-status": true,
+     "view-show-tips": true,
+     "view-snap-grid": true,
+     "view-show-grid": true
+    }
+   }
+  },
+  "admin": {
    "editor": {
     "view": {
      "view-grid-size": "20",
      "view-node-status": true,
      "view-show-tips": true,
-     "view-snap-grid": false,
+     "view-snap-grid": true,
      "view-show-grid": true
     }
-   }
+   },
+   "menu-deploymenu-item-flow": true,
+   "menu-deploymenu-item-full": false
   }
  }
 }
