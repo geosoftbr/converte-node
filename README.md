@@ -1,6 +1,6 @@
 # Converte
 APP Para Conversão de Moeda
-Criado a partir da necessidade de fazer cotações rápidas, eu utilizava uma planilha, atualizando a cotação do dolar turismo manualmente.
+Criado a partir da necessidade de fazer cotações rápidas, eu utilizava uma planilha, atualizando a cotação do dolar turismo manualmente. Desenvolvido em conjunto com outro colega de trabalho, que ajudou na inteligência da aplicação. Eu mantenho o código atualizado, e ajudo na concepção de novas ideias para implementações futuras.
 
 ## Esqueleto da Aplicação
 <img src="img/app.png">
@@ -61,10 +61,9 @@ Criado a partir da necessidade de fazer cotações rápidas, eu utilizava uma pl
     - Registro da cotação do dólar 9x durante o dia e armazenado em DB
     - Histórico de 2 dias da cotação do Dolar
     - Painel com gráfico acessado no ícone de gráfico ou na url /dolar
-    - Migração de serviços do Bluemix para outro provedor ainda em definição
-    - Rollback dos gráficos devido a mudança de servidor, aguardando migração do Database.
+    - Rollback dos gráficos devido a mudança de servidor
     
-### V2.0 (WORKING PROGRESS)
+### V2.0 (WORK IN PROGRESS)
     - Mudança de framework
     - Crianção de Manifest para WebApp (PWA)
     - Mudança de tema de cores
