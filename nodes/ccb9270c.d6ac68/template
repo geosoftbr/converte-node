@@ -1,0 +1,422 @@
+<!DOCTYPE HTML>
+<html>
+
+<title>Calculadora de Muamba</title>
+<head>
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-114873381-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'UA-114873381-1');
+    </script>
+    
+  <link rel="shortcut icon" href="//www.techcetera.com.br/favcalc.ico">
+  <meta charset="utf-8" />
+  <meta HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE" />
+  <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1, user-scalable=0" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <title>Calculo de Compras nos EUA</title>
+  <link rel="stylesheet" href="//code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script src="//code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highcharts/4.0.3/highcharts.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/vanilla-masker@1.1.1/build/vanilla-masker.min.js"></script>
+  <link href="//afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+<style>
+* {
+    box-sizing: border-box;
+}
+
+li {
+    background: lightgray;
+    margin: 6px;
+    color: #000;
+    border: 2px solid grey;
+    border-radius: 5px;
+    font-size: 16px;
+    text-shadow: 0 1px #ccc;
+    padding: 7px;
+}
+
+h4{
+	font-size: 11px;
+	font-style:oblique;
+	font-weight: bold;
+	text-align-last: left;
+}
+h5{
+	font-size: 10px;
+	font-style:oblique;
+	font-weight:lighter;
+	text-align-last: center;
+}
+
+body{
+  font-size: 12px;
+  font-family: sans-serif;
+
+}
+
+input[type=text], select, textarea{
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    resize: vertical;
+}
+
+label {
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+}
+
+
+input[type=button] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: left;
+    font-size:12px;
+    font-family: sans-serif;
+}
+input[type=reset] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: left;
+    font-size:12px;
+    font-family: sans-serif;
+}
+
+input[type=button]:hover {
+    background-color: #45a049;
+}
+input[type=reset]:hover {
+    background-color: #45a049;
+}
+input[type=text], input[type=password], input[type=email] {
+    font-size: 20px;
+    box-sizing: border-box;
+}
+.container {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+}
+
+.col-25 {
+    float: left;
+    width: 25%;
+    margin-top: 6px;
+}
+
+.col-75 {
+    float: left;
+    width: 75%;
+    margin-top: 6px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+.disabledInput {
+    color: red;
+}
+
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+
+  @media only screen and (min-width: 521px){
+    #header1 {width: 475px !important;  margin:auto auto !important; position: relative !important; border:1px solid #1d1d1d;;}
+    #c1 {width: 475px !important; min-height:500px !important; margin:auto auto !important; position: relative !important; border:1px solid #1d1d1d;;}
+    .ui-panel {
+		width: 20em;
+	}
+  }
+	@media ( min-width: 53em ) {
+    	/* wrap on wide viewports once open */
+    	.ui-panel {
+    		width: 29em;
+    	}
+    	/* same as the above but for panels with display mode "push" only */
+    	.ui-panel-page-content-open.ui-panel-page-content-display-push {
+    		width: auto;
+    	}
+    	.ui-panel-dismiss-display-push {
+    		display: none;
+    	}
+	}
+  .alert {font-weight: bold; color: #FF6C01;}
+  .smallin .ui-input-text {width: 200px !important; color:red;}
+  legend.h1lb {padding:10px 0 5px 0;}
+  .statusView {width: 100% !important;  margin:0px; position: relative !important; height:28px; padding:10px 0 0 0; background-color:#E9E9E9; font-weight:bold; -webkit-border-radius: 0.7em !important; border-radius: 0.7em; display:none; text-align:center; }
+  .statusViewAlert {width: 100% !important;  margin:0px; position: relative !important; height:28px; padding:10px 0 0 0; background-color:#F8B584 !important; font-weight:bold; -webkit-border-radius: 0.7em !important; border-radius: 0.7em; display:none; text-align:center; }
+  .ui-flipswitch {"border-radius: 2em !important; -webkit-border-radius: 2em !important; -moz-border-radius: 2em !important;}
+  /* Active button */
+  .ui-page-theme-a .ui-btn.ui-btn-active,html .ui-bar-a .ui-btn.ui-btn-active,html .ui-body-a .ui-btn.ui-btn-active,html body .ui-group-theme-a .ui-btn.ui-btn-active,html head + body .ui-btn.ui-btn-a.ui-btn-active,
+  /* Active checkbox icon */
+  .ui-page-theme-a .ui-checkbox-on:after,html .ui-bar-a .ui-checkbox-on:after,html .ui-body-a .ui-checkbox-on:after,html body .ui-group-theme-a .ui-checkbox-on:after,.ui-btn.ui-checkbox-on.ui-btn-a:after,
+  /* Active flipswitch background */.ui-page-theme-a .ui-flipswitch-active,html .ui-bar-a .ui-flipswitch-active,html .ui-body-a .ui-flipswitch-active,html body .ui-group-theme-a .ui-flipswitch-active,
+  html body .ui-flipswitch.ui-bar-a.ui-flipswitch-active,
+  /* Active slider track */
+  .ui-page-theme-a .ui-slider-track .ui-btn-active,html .ui-bar-a .ui-slider-track .ui-btn-active,html .ui-body-a .ui-slider-track .ui-btn-active,html body .ui-group-theme-a .ui-slider-track .ui-btn-active,html body div.ui-slider-track.ui-body-a .ui-btn-active {
+    background-color: 		#FF6C01 !important;
+    border-color:	 		#FF6C01 !important;
+    color: 					#fff /*{a-active-color}*/;
+    text-shadow: 0 /*{a-active-shadow-x}*/ 1px /*{a-active-shadow-y}*/ 0 /*{a-active-shadow-radius}*/ #005599 /*{a-active-shadow-color}*/;
+  }
+  .col-25, .col-75, input[type=button] {
+      width: 100%;
+      margin-top: 0;
+  }
+  .col-25, .col-75, input[type=reset] {
+      width: 100%;
+      margin-top: 0;
+  }
+
+input[type=text], input[type=password], input[type=email] {
+    font-size:18px;
+	margin-left: 0px;
+    margin-right: 0px;
+    width: 100%;
+}
+fieldset {
+    padding: 10px;
+}
+</style>
+<script>
+window.onload = function()
+{
+   //Pegando os valores na carga do app
+	var iof = 0.0638;
+	var impostoBR = 0.6;
+	var txDolar = {{{global.dTurismo}}}; //vai mudar para busca dinamica --- dolar turismo
+	var dife = {{{global.varBid}}};
+  var txtCad = {{{global.cad}}};
+  var difCad =  {{{global.cadVarBid}}};
+  var txtEur = {{{global.eur}}};
+  var difEur = {{{global.eurVarBid}}};
+  var txtGbp = {{{global.gbp}}};
+  var difGbp = {{{global.gbpVarBid}}};
+  var txtArs = {{{global.ars}}};
+  var difArs = {{{global.arsVarBid}}};
+  var txtBtc = {{{global.btc}}};
+  var difBtc = {{{global.cadVarBid}}};
+
+	document.getElementById("impostoIOF").innerHTML = "💳 IOF "+((iof*100).toLocaleString('pt-BR'))+"%";
+	//document.getElementById("dolar").innerHTML = "Dolar Turismo: R$ " +txDolar.toLocaleString('pt-BR');
+	if (dife < 0){
+	   var txtDif = "😁";
+
+	} else if (dife == 0) {
+	    var txtDif = "😐";
+
+	}else {
+	    var txtDif = "😡";
+
+	}
+	//document.getElementById("diff").innerHTML = txtDif;
+	document.getElementById("dolarturismo").innerHTML = "🇺🇸 R$ " +txDolar.toLocaleString('pt-BR')+" "+txtDif;
+	document.getElementById("impostoRFB").innerHTML = "📈 RFB "+((impostoBR*100).toLocaleString('pt-BR'))+"%";
+	document.getElementById("diff").innerHTML = "R$ " +txDolar.toLocaleString('pt-BR')+" "+txtDif;
+	
+	//outras moedas
+	document.getElementById("cad").innerHTML = "🇨🇦 R$ " +txtCad.toLocaleString('pt-BR');
+	document.getElementById("eur").innerHTML = "🇪🇺 R$ " +txtEur.toLocaleString('pt-BR');
+	document.getElementById("gbp").innerHTML = "🇬🇧 R$ " +txtGbp.toLocaleString('pt-BR');
+	document.getElementById("ars").innerHTML = "🇦🇷 R$ " +txtArs.toLocaleString('pt-BR');
+	document.getElementById("btc").innerHTML = "BTC$ R$ " +txtBtc.toLocaleString('pt-BR');
+
+// Fixa o campo de entrada de valor, aceitando apenas valores em DOLAR
+    VMasker(document.getElementById("vl1")).maskMoney({separator: ','});
+    VMasker(document.getElementById("vl1")).maskMoney({delimiter: '.'});
+}
+</script>
+<script type="text/javascript">
+function calcular() {
+    //essa função tem q sair daqui e ir para outro local (sem acesso) aqui só deve aparecer o resultado
+    var iof = 0.0638;
+    var iof1 = 0.011;
+    var impostoBR = 0.6;
+    var txDolar = {{{global.dTurismo}}};
+
+    //remove virgula e ponto
+var preval1 = (document.frm01.vlrDolar.value).replace(".","");
+var preval = (preval1).replace(",",".");
+   console.log("Valor de Entrada: "+preval);
+
+   var valor1 = preval;
+   console.log("VALOR DOLAR: "+valor1);
+
+   var vlrIOF = valor1 * iof;
+   console.log("VALOR IOF Cartão: "+vlrIOF);
+   
+   var vlrIOFPP = valor1 * iof1;
+   console.log("VALOR IOF Dinheiro: "+vlrIOFPP);
+   
+   var vlrIOF_Real = vlrIOF * txDolar;
+   console.log("VALOR IOF EM REAL: "+vlrIOF_Real);
+
+   var resAVISTA = (valor1 * txDolar)+vlrIOFPP;
+   console.log("RESULTADO AVISTA EM REAL: "+resAVISTA);
+
+   var resCOMPRA_US = resAVISTA + vlrIOF_Real;
+   console.log("RESULTADO COMPRAS US CARTAO: "+resCOMPRA_US);
+
+   var txRFB = resAVISTA * impostoBR;
+   console.log("TAXA 60%: "+txRFB);
+
+   var resRFB = resCOMPRA_US + txRFB;
+   console.log("RESULTADO RFB: "+resRFB);
+
+ 	valorAvista = parseFloat(Math.round(resAVISTA * 100) / 100).toFixed(2);
+	valorCartao = parseFloat(Math.round(resCOMPRA_US * 100) / 100).toFixed(2);
+	valorEntrega = parseFloat(Math.round(resRFB * 100) / 100).toFixed(2);
+
+   document.frm01.showBR.value = "R$ " +(valorAvista.replace("." , ","));
+   document.frm01.showUS.value = "R$ " +(valorCartao.replace("." , ","));
+   document.frm01.showRFB.value = "R$ " +(valorEntrega.replace("." , ","));
+
+}
+</script>
+</head>
+<body>
+<div data-theme="b" data-role="page" class="jqm-demos ui-responsive-panel" id="panel-responsive-page1" data-title="Cálculo de Compras em Dolar">
+	<div data-role="header" data-position="inline">
+		<div align="center" data-role="controlgroup" data-type="horizontal" class="ui-corner-all">
+			<a href="#" title="Refazer" onclick="location.reload()" class="ui-btn ui-shadow ui-corner-all ui-icon-refresh ui-btn-icon-notext ui-btn-inline" id="b1">Reiniciar</a>
+			<a href="#" class="ui-btn ui-corner-all">Cálculadora de Compras</a>
+			<a href="#graph" class="ui-btn ui-shadow ui-corner-all" data-iconpos="notext" class="ui-btn ui-corner-all" >📊</a>
+			<a href="#add-form-info" data-icon="info" data-iconpos="notext" class="ui-btn ui-btn-inline ui-shadow ui-corner-all ui-icon-info ui-btn-inline ui-btn-icon-notext" >Sobre</a>
+			<a href="#add-form" id="diff" class="ui-btn ui-corner-all">...</a>
+		</div>
+	</div>
+	<div class="ui-content" data-role="content">
+		<form action="calc.html" name="frm01" method="GET">
+			<div class="ui-field-contain">
+				<label for="vl1" style="margin:-3px 2% 0px 0px"><strong>Valor em (USD) 🇺🇸</strong></label>
+				<input id="vl1" type="text" name="vlrDolar" value="0,00">
+			</div>
+			<div class="ui-field-contain">
+				<input type="button" value="Converter para Real e Calcular" class="botao" onClick="calcular()"/>
+			</div>
+			<div align="center">
+                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- Calc_Tech -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:320px;height:100px"
+                     data-ad-client="ca-pub-9671027789462939"
+                     data-ad-slot="7857746941"></ins>
+                <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+			<div class="ui-field-contain">
+				<label for="vl2" ><strong>À Vista 💵</strong></label>
+				<input class="disabledInput" id= "vl2" type="text" name="showBR" id="showBR" readonly/>
+			</div>
+			<div class="ui-field-contain">
+				<label for="vl3" style="margin:-3px 2% 0px 0px"><strong>Cartão de Crédito 💳</strong></label>
+				<input id="vl3" type="text" name="showUS" id="showUS"  readonly/>
+			</div>
+			<div class="ui-field-contain">
+				<label for="vl4" style="margin:-3px 2% 0px 0px"><strong>Entrega 🇧🇷</strong></label>
+				<input id="vl4" type="text" name="showRFB" id="showRFB"  readonly/>
+			</div>
+            <div align="center">
+                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- Calc_Tech -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:320px;height:100px"
+                     data-ad-client="ca-pub-9671027789462939"
+                     data-ad-slot="7857746941"></ins>
+                <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+		</form>
+
+	</div>
+			<!-- /panel -->
+
+	<div data-role="panel" data-position="right" data-display="push" data-theme="b" id="add-form">
+
+        <form class="userform">
+
+        	<h2>Cotações</h2>
+            <h3><label id="dolarturismo" style="font-size:14px; padding:2px"> </label></h3>
+            <h3><label id="cad" style="font-size:14px; padding:2px"> </label></h3>
+            <h3><label id="eur" style="font-size:14px; padding:2px"> </label></h3>
+            <h3><label id="gbp" style="font-size:14px; padding:2px"> </label></h3>
+            <h3><label id="ars" style="font-size:14px; padding:2px"> </label></h3>
+            <h3><label id="btc" style="font-size:14px; padding:2px"> </label></h3>
+            <h3><label id="horaAtual" style="font-size:11px; padding:2px">Atualizado em: {{{global.timeTurismo}}} </label></h3>
+            <hr>
+            <h2>Impostos</h2>
+            <h3><label id="impostoIOF" style="font-size:14px; padding:2px"> </label></h3>
+		    <h3><label id="impostoRFB" style="font-size:14px; padding:2px"> </label></h3>
+        </form>
+
+	</div><!-- /panel -->
+	<div data-role="panel" data-position="right" data-display="overlay" data-theme="b" id="add-form-info">
+
+        <form class="userform">
+
+      <h1><strong>Atenção!</strong></h1>
+      <br>
+      <li>Os valores apresentados não devem ser considerados como valores finais dos produtos, existirão diferenças de tarifas cambiais<br></li>
+      <li>O cálculo de imposto da RFB pode variar de acordo com o bem que está sendo adquirido, pois esta versão do aplicativo não leva em conta o valor do frete.</li>
+      <br>
+      <h3>V1.7 <br><label id="created" style="font-size:11px; padding:2px">&#9400;2017 <a href="http://www.computercorp.com.br" target="_blank">Computer Corp</a>
+        <br>&#9400;2017 <a href="http://www.georgearaujo.com.br/" target="_blank">George Araujo</b></a></label></h3>
+
+
+        </form>
+
+  </div> 
+      <div data-role="footer" data-theme="b">
+		<h4>Calculadora de Compras V1.8 BETA</h4>
+	</div><!-- /footer -->
+</div><!-- Final da Primeira Página -->
+<!-- Start of second page -->
+<div data-role="page" id="graph" class="ui-content" data-theme="a" style="background-color:#212121">
+    <div data-role="header" data-theme="a">
+		<h1>Gráfico de Variação do Dolar</h1>
+	</div><!-- /header -->
+    <iframe src="/dolar" width="100%" height="550" seamless=""></iframe>
+    <p><a href="#hist" data-direction="reverse" class="ui-btn ui-shadow ui-corner-all ui-btn-b ui-bar-inherit">Histórico</a></p>
+    <p><a href="#panel-responsive-page1" data-direction="reverse" class="ui-btn ui-shadow ui-corner-all ui-btn-b ui-bar-inherit">Voltar</a></p>
+    <div data-role="footer" data-theme="a">
+		<h4>Última Atualização: {{{global.timeTurismo}}} </h4>
+	</div><!-- /footer -->
+</div><!-- /page two -->
+</div><!-- Final da segunda pagina -->
+<!-- Start of thrid page -->
+<div data-role="page" id="hist" class="ui-content" data-theme="a" style="background-color:#212121">
+    <div data-role="header" data-theme="a">
+		<h1>Histórico de Variação do Dolar</h1>
+	</div><!-- /header -->
+    <iframe src="/hist" width="100%" height="550" seamless=""></iframe>
+    <p><a href="#panel-responsive-page1" data-direction="reverse" class="ui-btn ui-shadow ui-corner-all ui-btn-b ui-bar-inherit">Voltar</a></p>
+    <div data-role="footer" data-theme="a">
+		<h4>Última Atualização: {{{global.timeTurismo}}} </h4>
+	</div><!-- /footer -->
+</div><!-- /page tree -->
+</div><!-- Final da terceira pagina -->
+
+</body>
+</html>

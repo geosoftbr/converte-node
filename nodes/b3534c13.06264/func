@@ -1,0 +1,43 @@
+msg.topic="fnConverte";
+
+var moeda = 0; //vai receber a moeda por parâmetro da aplicação
+var valor1 = msg.payload; //valor recebido por parâmetro da aplicação
+
+var resAVISTA=0;
+var resCOMPRA_CC=0;
+var txRFB=0;
+var resRFB=0;
+var preval=0;
+var resMoeda=0;
+var resMoeda2=0;
+var resIOF1=0;
+var resIOF2=0;
+
+var iof = 0.0638; //valor fixo para compras no CC em moeda estrangeira
+var iof1 = 0.011; //valor fixo do IOF para compra de papel moeda no BR
+var impostoBR = 0.6; //imposto máximo cobrado pela RFB para compras no exterior
+
+if (moeda !== 0) {
+    var txDolar = moeda;
+}else {
+    var txtDolar = parseFloat(global.get("dTurismo"));
+}
+
+var vlrIOF = valor1 * iof;
+var vlrIOFPP = valor1 * iof1;
+var vlrIOF_Real = vlrIOF * txtDolar;
+
+msg.resMoeda = txtDolar;
+msg.resMoeda2= moeda;
+
+msg.resIOF1=iof;
+msg.resIOF2=iof1;
+
+msg.preval=valor1;
+msg.resAVISTA = parseFloat(Math.round((valor1 * txtDolar) + vlrIOFPP).toFixed(2));
+msg.resCOMPRA_CC = msg.resAVISTA + vlrIOF_Real;
+msg.txRFB = msg.resAVISTA * impostoBR;
+msg.resRFB = msg.resCOMPRA_CC + txRFB;
+
+
+return msg;

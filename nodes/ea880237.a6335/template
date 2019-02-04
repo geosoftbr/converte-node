@@ -1,9 +1,8 @@
 <!DOCTYPE HTML>
 <html>
 
-<title>Calculadora de Muamba</title>
+<title>Calculo de Compras em Dolar</title>
 <head>
-    
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-114873381-1"></script>
     <script>
@@ -13,8 +12,8 @@
     
       gtag('config', 'UA-114873381-1');
     </script>
-    
-  <link rel="shortcut icon" href="//www.techcetera.com.br/favcalc.ico">
+
+  <link rel="shortcut icon" https://raw.githubusercontent.com/geosoftbr/images/master/favicon.ico">
   <meta charset="utf-8" />
   <meta HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE" />
   <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1, user-scalable=0" />
@@ -143,23 +142,7 @@ input[type=text], input[type=password], input[type=email] {
   @media only screen and (min-width: 521px){
     #header1 {width: 475px !important;  margin:auto auto !important; position: relative !important; border:1px solid #1d1d1d;;}
     #c1 {width: 475px !important; min-height:500px !important; margin:auto auto !important; position: relative !important; border:1px solid #1d1d1d;;}
-    .ui-panel {
-		width: 20em;
-	}
   }
-	@media ( min-width: 53em ) {
-    	/* wrap on wide viewports once open */
-    	.ui-panel {
-    		width: 29em;
-    	}
-    	/* same as the above but for panels with display mode "push" only */
-    	.ui-panel-page-content-open.ui-panel-page-content-display-push {
-    		width: auto;
-    	}
-    	.ui-panel-dismiss-display-push {
-    		display: none;
-    	}
-	}
   .alert {font-weight: bold; color: #FF6C01;}
   .smallin .ui-input-text {width: 200px !important; color:red;}
   legend.h1lb {padding:10px 0 5px 0;}
@@ -197,6 +180,7 @@ input[type=text], input[type=password], input[type=email] {
 fieldset {
     padding: 10px;
 }
+
 </style>
 <script>
 window.onload = function()
@@ -220,26 +204,26 @@ window.onload = function()
 	document.getElementById("impostoIOF").innerHTML = "💳 IOF "+((iof*100).toLocaleString('pt-BR'))+"%";
 	//document.getElementById("dolar").innerHTML = "Dolar Turismo: R$ " +txDolar.toLocaleString('pt-BR');
 	if (dife < 0){
-	   var txtDif = "😁";
+	   var txtDif = "⬇️";
 
 	} else if (dife == 0) {
-	    var txtDif = "😐";
+	    var txtDif = "⏺️";
 
 	}else {
-	    var txtDif = "😡";
+	    var txtDif = "⬆️";
 
 	}
 	//document.getElementById("diff").innerHTML = txtDif;
-	document.getElementById("dolarturismo").innerHTML = "🇺🇸 R$ " +txDolar.toLocaleString('pt-BR')+" "+txtDif;
+	document.getElementById("dolarturismo").innerHTML = "🇺🇸 R$ " +txDolar.toLocaleString('pt-BR')+"  "+txtDif+" "+dife.toLocaleString('pt-BR');
 	document.getElementById("impostoRFB").innerHTML = "📈 RFB "+((impostoBR*100).toLocaleString('pt-BR'))+"%";
 	document.getElementById("diff").innerHTML = "R$ " +txDolar.toLocaleString('pt-BR')+" "+txtDif;
 	
 	//outras moedas
-	document.getElementById("cad").innerHTML = "🇨🇦 R$ " +txtCad.toLocaleString('pt-BR');
-	document.getElementById("eur").innerHTML = "🇪🇺 R$ " +txtEur.toLocaleString('pt-BR');
-	document.getElementById("gbp").innerHTML = "🇬🇧 R$ " +txtGbp.toLocaleString('pt-BR');
-	document.getElementById("ars").innerHTML = "🇦🇷 R$ " +txtArs.toLocaleString('pt-BR');
-	document.getElementById("btc").innerHTML = "BTC$ R$ " +txtBtc.toLocaleString('pt-BR');
+	//document.getElementById("cad").innerHTML = "🇨🇦 R$ " +txtCad.toLocaleString('pt-BR');
+	//document.getElementById("eur").innerHTML = "🇪🇺 R$ " +txtEur.toLocaleString('pt-BR');
+	//document.getElementById("gbp").innerHTML = "🇬🇧 R$ " +txtGbp.toLocaleString('pt-BR');
+	//document.getElementById("ars").innerHTML = "🇦🇷 R$ " +txtArs.toLocaleString('pt-BR');
+	//document.getElementById("btc").innerHTML = "BTC$ R$ " +txtBtc.toLocaleString('pt-BR');
 
 // Fixa o campo de entrada de valor, aceitando apenas valores em DOLAR
     VMasker(document.getElementById("vl1")).maskMoney({separator: ','});
@@ -250,7 +234,8 @@ window.onload = function()
 function calcular() {
 	//essa função tem q sair daqui e ir para outro local (sem acesso) aqui só deve aparecer o resultado
 
-  var iof = 0.0638;
+  var iof = 0.0638; //iof do cartão de credito 
+  var iof1 = 0.011; // iof do papel moeda
 	var impostoBR = 0.6;
 	var txDolar = {{{global.dTurismo}}};
 
@@ -258,21 +243,27 @@ function calcular() {
    var preval1 = (document.frm01.vlrDolar.value).replace(".","");
    var preval = (preval1).replace(",",".");
    console.log("Valor de Entrada: "+preval);
+   console.log("iof: "+ iof);
+   console.log("iof1: "+ iof1);
+   console.log("txDolar: "+ txDolar);
 
    var valor1 = preval;
    console.log("VALOR DOLAR: "+valor1);
 
    var vlrIOF = valor1 * iof;
-   console.log("VALOR IOF: "+vlrIOF);
+   //console.log("VALOR IOF Cartão: "+vlrIOF); //valor do imposto no cartão de credito relativo a compra em dolar
+   
+   var vlrIOFPP = (valor1 * txDolar)*iof1;
+   console.log("VALOR IOF PAGO EM Dinheiro: "+vlrIOFPP); //valor do imposto relativo a compra de dolar em espécie
+ 
+   var resAVISTA = (valor1 * txDolar)+vlrIOFPP;
+   console.log("RESULTADO AVISTA EM REAL: "+resAVISTA); //valor da compra somado o valor do imposto na variavel vlrIOFPP
 
    var vlrIOF_Real = vlrIOF * txDolar;
-   console.log("VALOR IOF EM REAL: "+vlrIOF_Real);
-
-   var resAVISTA = valor1 * txDolar;
-   console.log("RESULTADO AVISTA EM REAL: "+resAVISTA);
-
+   console.log("VALOR IOF PAGO NO CARTAO CREDITO: "+vlrIOF_Real); //valor do imposto pago na compra feita em espécie
+ 
    var resCOMPRA_US = resAVISTA + vlrIOF_Real;
-   console.log("RESULTADO COMPRAS US CARTAO: "+resCOMPRA_US);
+   console.log("RESULTADO COMPRAS US CARTAO: "+resCOMPRA_US); //valor da compra no Cartão de cedito somado 
 
    var txRFB = resAVISTA * impostoBR;
    console.log("TAXA 60%: "+txRFB);
@@ -283,16 +274,27 @@ function calcular() {
  	valorAvista = parseFloat(Math.round(resAVISTA * 100) / 100).toFixed(2);
 	valorCartao = parseFloat(Math.round(resCOMPRA_US * 100) / 100).toFixed(2);
 	valorEntrega = parseFloat(Math.round(resRFB * 100) / 100).toFixed(2);
+	valorImpostoAvista = parseFloat(Math.round(vlrIOFPP * 100) / 100).toFixed(2);
+	valorImpostoCC = parseFloat(Math.round(vlrIOF_Real * 100) / 100).toFixed(2);
+	valorImpEnt = parseFloat(Math.round(txRFB * 100) / 100).toFixed(2);
 
    document.frm01.showBR.value = "R$ " +(valorAvista.replace("." , ","));
+   document.getElementById("showImposto").innerHTML = "<strong>À Vista 💵 </strong><br><small>imposto 1.1% valor pago: R$" +(valorImpostoAvista.replace("." , ",")+"</small>");
    document.frm01.showUS.value = "R$ " +(valorCartao.replace("." , ","));
+   document.getElementById("cc").innerHTML = "Cartão de Crédito 💳</strong><br><small>imposto 6,38% valor pago: R$" +(valorImpostoCC.replace("." , ",")+"</small>");
    document.frm01.showRFB.value = "R$ " +(valorEntrega.replace("." , ","));
+   document.getElementById("ent").innerHTML = "<strong>Entrega 🇧🇷</strong><br><small>imposto até 60% pago: R$" +(valorImpEnt.replace("." , ",")+"</small>");
+
+
+   
 
 }
 </script>
+
+
 </head>
 <body>
-<div data-theme="b" data-role="page" class="jqm-demos ui-responsive-panel" id="panel-responsive-page1" data-title="Cálculo de Compras em Dolar">
+<div data-theme="b" data-role="page" class="jqm-demos ui-responsive-panel " id="panel-responsive-page1" data-title="Cálculo de Compras em Dolar">
 	<div data-role="header" data-position="inline">
 		<div align="center" data-role="controlgroup" data-type="horizontal" class="ui-corner-all">
 			<a href="#" title="Refazer" onclick="location.reload()" class="ui-btn ui-shadow ui-corner-all ui-icon-refresh ui-btn-icon-notext ui-btn-inline" id="b1">Reiniciar</a>
@@ -323,15 +325,16 @@ function calcular() {
                 </script>
             </div>
 			<div class="ui-field-contain">
-				<label for="vl2" ><strong>À Vista 💵</strong></label>
+				<label for="vl2" id="showImposto"><strong>À Vista 💵 </strong><br> <small>imposto 1,1%</small> </label>
 				<input class="disabledInput" id= "vl2" type="text" name="showBR" id="showBR" readonly/>
+				
 			</div>
 			<div class="ui-field-contain">
-				<label for="vl3" style="margin:-3px 2% 0px 0px"><strong>Cartão de Crédito 💳</strong></label>
+				<label for="vl3" id="cc" style="margin:-3px 2% 0px 0px"><strong>Cartão de Crédito 💳</strong><br><small>imposto 6,38%</small></label>
 				<input id="vl3" type="text" name="showUS" id="showUS"  readonly/>
 			</div>
 			<div class="ui-field-contain">
-				<label for="vl4" style="margin:-3px 2% 0px 0px"><strong>Entrega 🇧🇷</strong></label>
+				<label for="vl4" id="ent" style="margin:-3px 2% 0px 0px"><strong>Entrega 🇧🇷</strong><br><small>imposto até 60%</small></label>
 				<input id="vl4" type="text" name="showRFB" id="showRFB"  readonly/>
 			</div>
             <div align="center">
@@ -350,17 +353,21 @@ function calcular() {
 	</div>
 			<!-- /panel -->
 
-	<div data-role="panel" data-position="right" data-display="push" data-theme="b" id="add-form">
+	<div data-role="panel" data-position="right" data-display="overlay" data-theme="b" id="add-form">
 
         <form class="userform">
 
         	<h2>Cotações</h2>
             <h3><label id="dolarturismo" style="font-size:14px; padding:2px"> </label></h3>
+            
+            <!-- 
             <h3><label id="cad" style="font-size:14px; padding:2px"> </label></h3>
             <h3><label id="eur" style="font-size:14px; padding:2px"> </label></h3>
             <h3><label id="gbp" style="font-size:14px; padding:2px"> </label></h3>
             <h3><label id="ars" style="font-size:14px; padding:2px"> </label></h3>
             <h3><label id="btc" style="font-size:14px; padding:2px"> </label></h3>
+            removido por George Araujo dia 01/02/2019 -->
+            
             <h3><label id="horaAtual" style="font-size:11px; padding:2px">Atualizado em: {{{global.timeTurismo}}} </label></h3>
             <hr>
             <h2>Impostos</h2>
@@ -378,42 +385,14 @@ function calcular() {
       <li>Os valores apresentados não devem ser considerados como valores finais dos produtos, existirão diferenças de tarifas cambiais<br></li>
       <li>O cálculo de imposto da RFB pode variar de acordo com o bem que está sendo adquirido, pois esta versão do aplicativo não leva em conta o valor do frete.</li>
       <br>
-      <h3>V1.7 <br><label id="created" style="font-size:11px; padding:2px">&#9400;2017 <a href="http://www.computercorp.com.br" target="_blank">Computer Corp</a>
-        <br>&#9400;2017 <a href="http://www.georgearaujo.com.br/" target="_blank">George Araujo</b></a></label></h3>
-
-
+      <h3>V1.8 <br><label id="created" style="font-size:11px; padding:2px">&#9400;2017 <a href="http://www.georgearaujo.com.br/" target="_blank">George Araujo</b></a></label></h3>
         </form>
 
-  </div> 
-      <div data-role="footer" data-theme="b">
-		<h4>Calculadora de Compras V1.8 BETA</h4>
-	</div><!-- /footer -->
-</div><!-- Final da Primeira Página -->
-<!-- Start of second page -->
-<div data-role="page" id="graph" class="ui-content" data-theme="a" style="background-color:#212121">
-    <div data-role="header" data-theme="a">
-		<h1>Gráfico de Variação do Dolar</h1>
-	</div><!-- /header -->
-    <iframe src="/dolar" width="100%" height="550" seamless=""></iframe>
-    <p><a href="#hist" data-direction="reverse" class="ui-btn ui-shadow ui-corner-all ui-btn-b ui-bar-inherit">Histórico</a></p>
-    <p><a href="#panel-responsive-page1" data-direction="reverse" class="ui-btn ui-shadow ui-corner-all ui-btn-b ui-bar-inherit">Voltar</a></p>
-    <div data-role="footer" data-theme="a">
-		<h4>Última Atualização: {{{global.timeTurismo}}} </h4>
-	</div><!-- /footer -->
-</div><!-- /page two -->
-</div><!-- Final da segunda pagina -->
-<!-- Start of thrid page -->
-<div data-role="page" id="hist" class="ui-content" data-theme="a" style="background-color:#212121">
-    <div data-role="header" data-theme="a">
-		<h1>Histórico de Variação do Dolar</h1>
-	</div><!-- /header -->
-    <iframe src="/hist" width="100%" height="550" seamless=""></iframe>
-    <p><a href="#panel-responsive-page1" data-direction="reverse" class="ui-btn ui-shadow ui-corner-all ui-btn-b ui-bar-inherit">Voltar</a></p>
-    <div data-role="footer" data-theme="a">
-		<h4>Última Atualização: {{{global.timeTurismo}}} </h4>
-	</div><!-- /footer -->
-</div><!-- /page tree -->
-</div><!-- Final da terceira pagina -->
+  </div>
+    <div data-role="footer" data-theme="b">
+		<small><center><b>Calculadora de Compras V1.8 última atualização: 01/02/2019</b><br>
+		Os valores apresentados não devem ser considerados como valores finais dos produtos, existirão diferenças de tarifas cambiais</center></small>
+	</div>
 
 </body>
 </html>
